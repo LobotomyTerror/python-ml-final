@@ -1,0 +1,5 @@
+Symptoms to Disease Natural Language Processing Classification 
+
+ 
+
+When experiencing certain medical symptoms, it is challenging to cope with uncertainty about what could be happening at the current moment. Sifting through a multitude of online sources can lead to dead ends when trying to associate your symptoms with a medical issue. The goal of this project is to develop a Natural Language Processing (NLP) model trained on a dataset containing medical conditions and their associated symptoms. This will allow the user to input a description of their symptoms, and the model will output a matching prognosis. This is useful because it will give the user more information about what could be happening, which would allow them to make a more informed decision on the subsequent steps. This is not intended to be used as medical advice. Our presentation will include a brief demonstration of the application, followed by an explanation of the model training process and additional project details. 
