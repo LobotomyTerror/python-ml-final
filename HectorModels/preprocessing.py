@@ -13,7 +13,12 @@ CSV file expected columns: 'label' and 'text'
 
 Author: Hector Ramirez-Zubiria
 """
+"""
+sklearn function to select tranning and testing sets
+sklearn model selection import train test split
 
+sklearn feature extraction test import countvectorrizer tfidvector
+"""
 import os
 import pandas as pd
 import re
