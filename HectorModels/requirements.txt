@@ -1,0 +1,4 @@
+pandas 
+nltk
+tensorflow
+numpy==1.24.4
