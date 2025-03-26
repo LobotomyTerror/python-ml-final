@@ -30,7 +30,7 @@ with open("tokenizer/tokenizer.pkl", "rb") as f:
 with open("label_encoder.pkl", "rb") as f:
     label_encoder = pickle.load(f)
 
-model = load_model("Bi_LSTM64_94_drop2_batch16.keras")
+model = load_model("94_rnn.keras")
 MAX_LEN = 20  # must match what was used during training
 
 # === 2. Preprocess input text ===
