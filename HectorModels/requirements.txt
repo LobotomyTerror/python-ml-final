@@ -4,3 +4,8 @@ tensorflow
 numpy
 contractions
 scikit-learn
+transformers 
+datasets
+torch
+torchvision 
+torchaudio --index-url https://download.pytorch.org/whl/cpu
