@@ -27,3 +27,19 @@ async def model_predicitions(
     }
     print(message)
     return message
+
+@router.get(
+    '/make-predictions-jack',
+    description='Using model for predictions for jacks model'
+)
+async def model_predicitions_jack(
+    question: Annotated[str, Query(min_length=10, max_length=500)]
+):
+    response = model_predictions.unpickle_jack_model_prediction(question)
+    message = {
+        "message": response,
+        "status": status.HTTP_200_OK
+    }
+    print(message)
+    return message
+

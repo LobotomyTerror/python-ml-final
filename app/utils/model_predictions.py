@@ -24,3 +24,16 @@ def unpickle_model_make_prediciton(symptom: str) -> str:
     predicted_disease = model.predict(symptom_tfidf_2)[0]
     return predicted_disease
 
+
+def unpickle_jack_model_prediction(symptom: str) -> str:
+    current_dir = os.getcwd()
+
+    with open(f'{current_dir}/utils/jack_nlp_pipeline.pkl', 'rb') as f:
+        vectorizer, myModel = pickle.load(f)
+    
+    processed_symptom = preprocess_text(symptom)
+    symptom_tfifd = vectorizer.transform([processed_symptom])
+
+    predicted_disease = myModel.predict(symptom_tfifd)[0]
+    return predicted_disease
+
