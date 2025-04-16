@@ -102,3 +102,6 @@ print(f"\n🔢 Average Validation Accuracy: {np.mean(fold_accuracies):.4f}")
 print(f"🎯 Average Training Accuracy:   {np.mean(train_accuracies):.4f}")
 print(f"📉 Standard Deviation:          {np.std(fold_accuracies):.4f}")
 print(f"💾 Best model saved to:         {MODEL_SAVE_PATH}")
+# clean up code 
+# maybe translate to pytorch
+# do the presentation
