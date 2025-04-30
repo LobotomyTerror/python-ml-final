@@ -18,18 +18,17 @@ from sklearn.preprocessing import LabelEncoder
 
 # === Paths ===
 MODEL_PATH = "Data/best_model.keras"
-ENCODER_PATH = "Data/label_encoder.pkl"
+ENCODER_PATH = "Data/label_encoder_correct.pkl"  # 🟢 Use the correct one now
 TEST_CSV_PATH = "Data/test.csv"
-CLEAN_LABELS_PATH = "Data/Cleaned_Symptom2DiseaseGroup.csv"
 
 # === Load trained model ===
 model = load_model(MODEL_PATH)
 print(f"✅ Loaded model from: {MODEL_PATH}")
 
-# === Load label encoder ===
+# === Load label encoder (with real class names)
 with open(ENCODER_PATH, "rb") as f:
     label_encoder: LabelEncoder = pickle.load(f)
-print(f"✅ Loaded LabelEncoder from: {ENCODER_PATH}")
+print(f"✅ Loaded corrected LabelEncoder from: {ENCODER_PATH}")
 
 # === Load test data ===
 df = pd.read_csv(TEST_CSV_PATH)
@@ -57,21 +56,8 @@ y_pred_encoded = np.argmax(y_pred_probs, axis=1)
 # === Confusion Matrix ===
 cm = confusion_matrix(y_true_encoded, y_pred_encoded)
 
-# Load class names from the cleaned dataset, assuming it has all 24 label names
-label_df = pd.read_csv(CLEAN_LABELS_PATH)
-
-# Create a map from numeric ID to class name using the mode label for each class index
-# This assumes 'label' column in Cleaned CSV is in the same row order as model training
-id_to_label_map = (
-    label_df
-    .groupby("label")
-    .first()
-    .reset_index()
-    .sort_index()  # assumes label indices were assigned in sorted order
-)
-
-# Convert to display names
-string_labels = [label.replace("_", " ").title() for label in id_to_label_map["label"].values]
+# === Get readable labels
+string_labels = [label.replace("_", " ").title() for label in label_encoder.classes_]
 
 # === Classification Report ===
 print("\n📋 Classification Report:")
