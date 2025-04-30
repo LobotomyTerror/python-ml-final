@@ -4,3 +4,5 @@ tensorflow
 numpy
 contractions
 scikit-learn
+seaborn
+matplotlib
