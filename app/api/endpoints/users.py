@@ -25,7 +25,7 @@ async def model_predicitions(
         "message": response,
         "status": status.HTTP_200_OK
     }
-    print(message)
+
     return message
 
 @router.get(
@@ -43,3 +43,18 @@ async def model_predicitions_jack(
     print(message)
     return message
 
+
+# @router.get(
+#     '/predict-rnn',
+#     description='Make disease prediction using RNN model (BiLSTM)'
+# )
+# async def model_predictions_rnn(
+#     question: Annotated[str, Query(min_length=10, max_length=500)]
+# ):
+#     response = model_predictions.unpickle_model_make_prediciton(question)
+#     message = {
+#         "model": "rnn",
+#         "prediction": response,
+#         "status": status.HTTP_200_OK
+#     }
+#     return message

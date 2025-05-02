@@ -10,13 +10,16 @@
   <h1>Disease Prediction App</h1>
 
   <section class="model-section">
-    <h2>Random Forest</h2>
+    <h2>Random Forest/KNN</h2>
     <form id="danForm">
       <label for="danInput">Symptom:</label>
       <input type="text" id="danInput" name="danInput">
       <button type="submit" id="danBtn">Predict</button>
     </form>
-    <p>Prediction: <span id="danOutput"></span></p>
+    <p>KNN Prediction: <span id="knnPred"></span></p>
+    <p>KNN Confidence: <span id="knnConf"></span></p>
+    <p>RFC Prediction: <span id="rfcPred"></span></p>
+    <p>RFC Confidence: <span id="rfcConf"></span></p>
   </section>
 
   <section class="model-section">
@@ -27,6 +30,7 @@
       <button type="submit" id="jackBtn">Predict</button>
     </form>
     <p>Prediction: <span id="jackOutput"></span></p>
+    <p>Confidence: <span id="jackConf"></span></p>
   </section>
 
 </body>
