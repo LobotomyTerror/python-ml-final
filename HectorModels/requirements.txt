@@ -1,4 +1,8 @@
 pandas 
 nltk
 tensorflow
-numpy==1.24.4
+numpy
+contractions
+scikit-learn
+transformers 
+
