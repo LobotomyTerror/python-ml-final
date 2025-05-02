@@ -1,19 +1,17 @@
 import pandas as pd
-from sklearn.preprocessing import LabelEncoder
-import pickle
 
-# Load the correct labels
-df = pd.read_csv("Data/Cleaned_Symptom2DiseaseGroup.csv")
+# Load both datasets
+processed_df = pd.read_csv("Data/Processed_Symptom2DiseaseGroup_Labeled.csv")
+cleaned_df = pd.read_csv("Data/Cleaned_Symptom2DiseaseGroup.csv")
 
-# Get unique class names (strings)
-classes = sorted(df["label"].unique())
+# Ensure they have the same number of rows
+if len(processed_df) != len(cleaned_df):
+    raise ValueError("Files do not have the same number of rows. Cannot match by index.")
 
-# Create new LabelEncoder using actual names
-le = LabelEncoder()
-le.fit(classes)
+# Replace label_name in processed with label from cleaned
+processed_df["label_name"] = cleaned_df["label"]
 
-# Save the updated LabelEncoder
-with open("Data/label_encoder_correct.pkl", "wb") as f:
-    pickle.dump(le, f)
-
-print("✅ Saved updated LabelEncoder with class names.")
+# Save updated version
+output_path = "Data/Processed_Symptom2DiseaseGroup_Labeled_Updated.csv"
+processed_df.to_csv(output_path, index=False)
+print(f"✅ Updated file saved to: {output_path}")
