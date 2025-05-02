@@ -35,16 +35,7 @@ ID2NAME = [                         # 24 classes
 # ── load tokenizer & build encoder ------------------------------------------
 with open("tokenizer_pytorch.pkl", "rb") as f:
     tok = pickle.load(f)
-
-# works for both real Keras Tokenizer and plain dict
-if hasattr(tok, "word_index"):
-    word_index = tok.word_index                # Keras tokenizer
-elif isinstance(tok, dict):
-    # if it's already {word:int, ...} just use it directly
-    word_index = tok
-else:
-    raise TypeError("tokenizer_pytorch.pkl format not recognised")
-
+word_index = tok
 
 def encode(tokens: list[str]) -> list[int]:
     return [word_index.get(t, 0) for t in tokens]
