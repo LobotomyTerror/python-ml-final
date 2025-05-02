@@ -112,9 +112,8 @@ def main() -> None:
     # test data
     df_test = pd.read_csv(TEST_CSV)
     y_true  = df_test["label"].to_numpy()
-
     X_pad = df_test.drop(columns=["label"]).to_numpy(dtype=np.int64)
-    lengths = (X_pad != 0).sum(axis=1)          # needed for pack_padded_sequence
+    lengths = (X_pad != 0).sum(axis=1)
 
     ds = torch.utils.data.TensorDataset(
         torch.tensor(X_pad, dtype=torch.long),
@@ -135,9 +134,16 @@ def main() -> None:
         y_true, y_pred, average=None, labels=np.arange(NUM_CLASSES)
     )
 
-    # 6️⃣ plot
-    import matplotlib.pyplot as plt
+    # ✅ Save F1 report to pickle
+    report_data = {
+        "f1_scores": f1_scores,
+        "label_names": label_names
+    }
+    with open("f1_report.pkl", "wb") as f:
+        pickle.dump(report_data, f)
+    print("💾 F1 report saved as f1_report.pkl")
 
+    # Optional: visualization
     fig, ax = plt.subplots(figsize=FIGSIZE)
     bars = ax.bar(np.arange(NUM_CLASSES), f1_scores * 100)
     ax.set_title("Per-Class F1 Scores (Bi-LSTM PyTorch)", weight="bold", pad=12)
@@ -158,7 +164,6 @@ def main() -> None:
     fig.savefig(FIG_NAME, dpi=150)
     print(f"📈  Figure saved to {FIG_NAME}")
     plt.show()
-
 
 if __name__ == "__main__":
     main()
