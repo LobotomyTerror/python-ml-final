@@ -51,7 +51,7 @@ Though this command works on a MacOS doesn't mean it works all the time. The com
    ```
 Once the above command is ran you should see something similar to the below image (terminals vary in how they look so when you do the above command it might not show exactly like this but as long as there is the name of the virtual environment then it should be good to go).
 
-picture here
+![example](screenshots/venv_example.png)
 
 3. To deactivate the virtual environment simply type in this comman
 
